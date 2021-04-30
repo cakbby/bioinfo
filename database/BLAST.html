@@ -6,7 +6,7 @@
         <style>
 </style>
         
-<link rel="stylesheet" href="../stylesheets/database.css">
+        <link rel="stylesheet" href="../stylesheets/database.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
             body {
@@ -24,8 +24,9 @@
     </head>
     <body class="vscode-body vscode-light">
         <!-- title: BLAST - database -->
-<p><a href="/bioinfo_database.html">&lt;戻る</a></p>
+<p><a href="/bioinfo/bioinfo_database.html">&lt;戻る</a></p>
 <h1 id="blast">BLAST</h1>
+<p>update : 2021/04/30</p>
 <p><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">https://blast.ncbi.nlm.nih.gov/Blast.cgi</a></p>
 <ul>
 <li><a href="#blast">BLAST</a>
@@ -34,18 +35,37 @@
 <li><a href="#%E9%85%8D%E5%88%97%E9%96%93%E3%81%AE%E7%9B%B8%E5%90%8C%E6%80%A7%E3%82%92%E6%A4%9C%E7%B4%A2">配列間の相同性を検索</a>
 <ul>
 <li><a href="#blastn-nucleotide-blast">blastn (Nucleotide BLAST)</a></li>
+<li><a href="#blastp-protein-blast">blastp (Protein BLAST)</a></li>
+</ul>
+</li>
+<li><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%81%8A%E8%A9%B1">その他のお話</a>
+<ul>
+<li><a href="#%E3%82%A2%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%A1%E3%83%B3%E3%83%88%E3%81%A8%E3%82%B9%E3%82%B3%E3%82%A2%E8%A1%A8">アラインメントとスコア表</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <h2 id="出来ること">出来ること</h2>
-<p>塩基配列やアミノ酸配列を様々なデータベースの配列と相同性検索できる。</p>
+<p>塩基配列やアミノ酸配列を様々なデータベースの配列と相同性検索(類似した遺伝子・タンパク質を検索)できる。</p>
 <h2 id="配列間の相同性を検索">配列間の相同性を検索</h2>
 <h3 id="blastn-nucleotide-blast">blastn (Nucleotide BLAST)</h3>
-<p>塩基配列同士で相同性検索する。
-Enter Query Sequence に配列（FASTA）を入れ、Choose Search Set の Database から調べたいデータベースを選択する。</p>
-<p>（テスト）</p>
+<p>塩基配列 -&gt; 塩基配列 で相同性検索する。</p>
+<p>Enter Query Sequence に配列（FASTA形式など）を入れ(あるいはアップロード)、Choose Search Set の Database から調べたいデータベースを選択する。初期設定の &quot;Nucleotide collection (nr/nt)&quot; は、 nr = non-redundant つまり様々なデータベースのうち重複したデータを除いたデータベースを用いる。</p>
+<p>BLASTボタンを押すと、一定時間ごとにジョブが完了したかを更新し、完了したら結果が見える。なお、miRNAのような短い配列を入力した場合は、この段階でそれ専用のパラメータ設定に切り替わる。</p>
+<p><img src="file:///\\wsl$\Ubuntu\home\cakkby2\bioinfo_web\bioinfo\database\short_nucleotide.png" alt=""></p>
+<p>結果は以下のように表示される。</p>
+<p><img src="file:///\\wsl$\Ubuntu\home\cakkby2\bioinfo_web\bioinfo\database\blastn_result1.png" alt=""></p>
+<p>Max Score は<a href="#%E3%82%A2%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%A1%E3%83%B3%E3%83%88%E3%81%A8%E3%82%B9%E3%82%B3%E3%82%A2%E8%A1%A8">ローカルアラインメント</a>の最大値を、 E-value は、ランダムな配列同士で比較したときに同じスコアをとる配列数の期待値を、 &quot;Per. Ident&quot; = Identity は配列の相同性（一致率）を表している。Max Score はアラインメント的に長い配列の方が高くなりやすく、 Identity もローカルアラインメントとして部分的にしか見ていないので、E-value が指標としてよく用いられる。</p>
+<p><img src="file:///\\wsl$\Ubuntu\home\cakkby2\bioinfo_web\bioinfo\database\blastn_result2.png" alt=""></p>
+<p>Queryが入力した質問配列、Sbjctがデータベース上の配列で、アラインメントの様子が描かれている。</p>
+<h3 id="blastp-protein-blast">blastp (Protein BLAST)</h3>
+<p>アミノ酸配列 -&gt; アミノ酸配列 で相同性検索する。</p>
+<p>Enter Query Sequence に配列（FASTA形式など）を入れ、Choose Search Set の Database から調べたいデータベースを選択する。Non-redundant protein sequences (nr) は前述したように重複を除いたもの。</p>
+<h2 id="その他のお話">その他のお話</h2>
+<p>Basic Local Alignment Search Tool の略。</p>
+<h3 id="アラインメントとスコア表">アラインメントとスコア表</h3>
+<p>あああ</p>
 
     </body>
     </html>
