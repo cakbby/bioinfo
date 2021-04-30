@@ -48,7 +48,7 @@ h2 {
     font-weight: bold;
     font-size: 1.8em;
     color: #444;
-    margin: 0.8em, 0, 0.8em;
+    margin: 0.8em 0 0.8em;
     padding-left: 15px;
 	line-height: 1.3em;
     border-left: 6px solid #007acc;
@@ -91,4 +91,14 @@ h3 {
 	color:#666;
     font-weight: 400;
     line-height: 1.6em;
+}
+
+@media screen and (max-width: 480px) {
+	h1 {
+		font-size: 1.6em;
+	}
+
+	h2 {
+		font-size: 1.3em;
+	}
 }
