@@ -14,6 +14,7 @@ https://blast.ncbi.nlm.nih.gov/Blast.cgi
   - [配列間の相同性を検索](#配列間の相同性を検索)
     - [blastn (Nucleotide BLAST)](#blastn-nucleotide-blast)
     - [blastp, PSI-BLAST (Protein BLAST)](#blastp-psi-blast-protein-blast)
+    - [blastx, tblastn/tblastx](#blastx-tblastntblastx)
     - [マルチプルアラインメント](#マルチプルアラインメント)
   - [その他のお話](#その他のお話)
     - [アラインメントとスコア表](#アラインメントとスコア表)
@@ -63,15 +64,23 @@ Algorithm にて PSI-BLASTを選択してBLASTを実行する。一回目の結�
 
 ![](img/blast_psiblast_result2_new.png)
 
-新しく現れた配列は "Newly added" にて確認できる。
+新しく現れた配列は "Newly added" にて確認できる。もし新しいヒットが見られなくなれば、その知らせが現れる。
+
+なお、より構造に即した検索を行うものとして、DELTA-BLASTが挙げられる。Domain Enhanced Lookup Time Accelerated BLAST の略で、CDD (NCBI Conserved Domain Database) を活用して得たドメイン情報をもとに PSSM (Position Specific Scoring Matrix, 部位特異的スコア行列) を作成し、構造情報をもとにBLASTを行う。基本的にはPSI-BLASTと同様にやればできる。
+
+### blastx, tblastn/tblastx
+
+blastx では、塩基配列を入力に、読み枠を 3 × 2 = 6 通り試して翻訳し、アミノ酸配列としてBLAST検索する。タンパク質をコードするかどうか（未知のタンパク質やnon-coding領域の確認など）に使える。
+
+tblastn は blastx をデータベース側で行うようなもので、アミノ酸配列を入力として、データベース側の配列を 6 通り分翻訳して検索する。tblastx は blastx と tblastn を合わせたもので、塩基配列を入力し、両方とも 6 通り翻訳して検索する。これらは配列についての情報がないときに利用しやすい。
 
 ### マルチプルアラインメント
 
-あああ
+blastn などで、”Entry Query Sequence” の下部に "Align two or more sequences" というボタンがある。これをクリックするとすでに持っているデータをローカルアラインメントしてくれる。Queryの方に入力側としての配列（複数可）を、Subject側に比較側としての配列（複数可）を入力して通常通りBLASTすることでマルチプルアラインメントも可能となる。
 
 ## その他のお話
 
-Basic Local Alignment Search Tool の略。
+BLAST は Basic Local Alignment Search Tool の略。
 
 ### アラインメントとスコア表
 
@@ -84,3 +93,5 @@ Basic Local Alignment Search Tool の略。
 Scoring Parameters にてスコアについての設定を変えられる。塩基配列の場合は、マッチ・ミスマッチスコアの値や、ギャップスコアが線形かextensionなどを含むかなどを変えられる。アミノ酸配列の場合はMatrixでスコア表を選ぶ。BLOSUM か PAM かを変更できる。
 
 また、General Parameters の "Expect threshold" で E-value の閾値（これより小さな値のものしか表示しない）を設定できる。
+
+[<戻る][link-return]

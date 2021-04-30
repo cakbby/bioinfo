@@ -36,6 +36,7 @@
 <ul>
 <li><a href="#blastn-nucleotide-blast">blastn (Nucleotide BLAST)</a></li>
 <li><a href="#blastp-psi-blast-protein-blast">blastp, PSI-BLAST (Protein BLAST)</a></li>
+<li><a href="#blastx-tblastntblastx">blastx, tblastn/tblastx</a></li>
 <li><a href="#%E3%83%9E%E3%83%AB%E3%83%81%E3%83%97%E3%83%AB%E3%82%A2%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%A1%E3%83%B3%E3%83%88">マルチプルアラインメント</a></li>
 </ul>
 </li>
@@ -71,17 +72,22 @@
 <p>右上の Run PSI-BLAST iteration 2 にて、結果のうち指定した数の配列を利用して2回目のBLASTを始められる。</p>
 <p><img src="img/blast_psiblast_result2.png" alt=""></p>
 <p><img src="img/blast_psiblast_result2_new.png" alt=""></p>
-<p>新しく現れた配列は &quot;Newly added&quot; にて確認できる。</p>
+<p>新しく現れた配列は &quot;Newly added&quot; にて確認できる。もし新しいヒットが見られなくなれば、その知らせが現れる。</p>
+<p>なお、より構造に即した検索を行うものとして、DELTA-BLASTが挙げられる。Domain Enhanced Lookup Time Accelerated BLAST の略で、CDD (NCBI Conserved Domain Database) を活用して得たドメイン情報をもとに PSSM (Position Specific Scoring Matrix, 部位特異的スコア行列) を作成し、構造情報をもとにBLASTを行う。基本的にはPSI-BLASTと同様にやればできる。</p>
+<h3 id="blastx-tblastntblastx">blastx, tblastn/tblastx</h3>
+<p>blastx では、塩基配列を入力に、読み枠を 3 × 2 = 6 通り試して翻訳し、アミノ酸配列としてBLAST検索する。タンパク質をコードするかどうか（未知のタンパク質やnon-coding領域の確認など）に使える。</p>
+<p>tblastn は blastx をデータベース側で行うようなもので、アミノ酸配列を入力として、データベース側の配列を 6 通り分翻訳して検索する。tblastx は blastx と tblastn を合わせたもので、塩基配列を入力し、両方とも 6 通り翻訳して検索する。これらは配列についての情報がないときに利用しやすい。</p>
 <h3 id="マルチプルアラインメント">マルチプルアラインメント</h3>
-<p>あああ</p>
+<p>blastn などで、”Entry Query Sequence” の下部に &quot;Align two or more sequences&quot; というボタンがある。これをクリックするとすでに持っているデータをローカルアラインメントしてくれる。Queryの方に入力側としての配列（複数可）を、Subject側に比較側としての配列（複数可）を入力して通常通りBLASTすることでマルチプルアラインメントも可能となる。</p>
 <h2 id="その他のお話">その他のお話</h2>
-<p>Basic Local Alignment Search Tool の略。</p>
+<p>BLAST は Basic Local Alignment Search Tool の略。</p>
 <h3 id="アラインメントとスコア表">アラインメントとスコア表</h3>
 <p>アラインメントはグローバルなものとローカルなものがあり、前者はNeedleman-Wunsch法、後者はSmith-Waterman法（両方とも動的計画法）により求められる。BLASTは後者。動的計画法におけるスコアはマッチ・ギャップ・ミスマッチのそれぞれに対応したもの表の形式で与えられ、スコア表は塩基配列・アミノ酸配列のそれぞれで与えられる。</p>
 <p>スコア表を変更するには、BLASTボタン下部の”Algorithm parameters”を開く。</p>
 <p><img src="img/blast_algo_param.png" alt=""></p>
 <p>Scoring Parameters にてスコアについての設定を変えられる。塩基配列の場合は、マッチ・ミスマッチスコアの値や、ギャップスコアが線形かextensionなどを含むかなどを変えられる。アミノ酸配列の場合はMatrixでスコア表を選ぶ。BLOSUM か PAM かを変更できる。</p>
 <p>また、General Parameters の &quot;Expect threshold&quot; で E-value の閾値（これより小さな値のものしか表示しない）を設定できる。</p>
+<p><a href="/bioinfo/bioinfo_database.html">&lt;戻る</a></p>
 
     </body>
     </html>
