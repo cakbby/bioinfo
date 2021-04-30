@@ -35,7 +35,8 @@
 <li><a href="#%E9%85%8D%E5%88%97%E9%96%93%E3%81%AE%E7%9B%B8%E5%90%8C%E6%80%A7%E3%82%92%E6%A4%9C%E7%B4%A2">配列間の相同性を検索</a>
 <ul>
 <li><a href="#blastn-nucleotide-blast">blastn (Nucleotide BLAST)</a></li>
-<li><a href="#blastp-protein-blast">blastp (Protein BLAST)</a></li>
+<li><a href="#blastp-psi-blast-protein-blast">blastp, PSI-BLAST (Protein BLAST)</a></li>
+<li><a href="#%E3%83%9E%E3%83%AB%E3%83%81%E3%83%97%E3%83%AB%E3%82%A2%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%A1%E3%83%B3%E3%83%88">マルチプルアラインメント</a></li>
 </ul>
 </li>
 <li><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%81%8A%E8%A9%B1">その他のお話</a>
@@ -53,19 +54,34 @@
 <p>塩基配列 -&gt; 塩基配列 で相同性検索する。</p>
 <p>Enter Query Sequence に配列（FASTA形式など）を入れ(あるいはアップロード)、Choose Search Set の Database から調べたいデータベースを選択する。初期設定の &quot;Nucleotide collection (nr/nt)&quot; は、 nr = non-redundant つまり様々なデータベースのうち重複したデータを除いたデータベースを用いる。</p>
 <p>BLASTボタンを押すと、一定時間ごとにジョブが完了したかを更新し、完了したら結果が見える。なお、miRNAのような短い配列を入力した場合は、この段階でそれ専用のパラメータ設定に切り替わる。</p>
-<p><img src="short_nucleotide.png" alt=""></p>
+<p><img src="img/blast_short_nucleotide.png" alt=""></p>
 <p>結果は以下のように表示される。</p>
-<p><img src="blastn_result1.png" alt=""></p>
-<p>Max Score は<a href="#%E3%82%A2%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%A1%E3%83%B3%E3%83%88%E3%81%A8%E3%82%B9%E3%82%B3%E3%82%A2%E8%A1%A8">ローカルアラインメント</a>の最大値を、 E-value は、ランダムな配列同士で比較したときに同じスコアをとる配列数の期待値を、 &quot;Per. Ident&quot; = Identity は配列の相同性（一致率）を表している。Max Score はアラインメント的に長い配列の方が高くなりやすく、 Identity もローカルアラインメントとして部分的にしか見ていないので、E-value が指標としてよく用いられる。</p>
-<p><img src="blastn_result2.png" alt=""></p>
-<p>Queryが入力した質問配列、Sbjctがデータベース上の配列で、アラインメントの様子が描かれている。</p>
-<h3 id="blastp-protein-blast">blastp (Protein BLAST)</h3>
+<p><img src="img/blast_blastn_result1.png" alt=""></p>
+<p>Max Score は<a href="#%E3%82%A2%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%A1%E3%83%B3%E3%83%88%E3%81%A8%E3%82%B9%E3%82%B3%E3%82%A2%E8%A1%A8">ローカルアラインメント</a>の最大値を、 <strong>E-value</strong> は、ランダムな配列同士で比較したときに同じスコアをとる配列数の期待値を、 &quot;Per. Ident&quot; = Identity は配列の相同性（一致率）を表している。Max Score はアラインメント的に長い配列の方が高くなりやすく、 Identity もローカルアラインメントとして部分的にしか見ていないので、E-value が指標としてよく用いられる。</p>
+<p><img src="img/blast_blastn_result2.png" alt=""></p>
+<p>Queryが入力した質問配列、Sbjctがデータベース上の配列で、アラインメントの様子が描かれている。Sequence ID は GenBankフォーマットデータへのリンク。</p>
+<p>スコア表の変更やE-valueの制限などは<a href="#%E3%82%A2%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%A1%E3%83%B3%E3%83%88%E3%81%A8%E3%82%B9%E3%82%B3%E3%82%A2%E8%A1%A8">こちら</a>で</p>
+<h3 id="blastp-psi-blast-protein-blast">blastp, PSI-BLAST (Protein BLAST)</h3>
 <p>アミノ酸配列 -&gt; アミノ酸配列 で相同性検索する。</p>
-<p>Enter Query Sequence に配列（FASTA形式など）を入れ、Choose Search Set の Database から調べたいデータベースを選択する。Non-redundant protein sequences (nr) は前述したように重複を除いたもの。</p>
+<p>Enter Query Sequence に配列（FASTA形式など）を入れ、Choose Search Set の Database から調べたいデータベースを選択する。Non-redundant protein sequences (nr) は前述したように重複を除いたもの。他には、 UniProtKB や Protein Data Bank などが選べる。</p>
+<p>結果などはblastnの時と同様。</p>
+<p>BLAST ボタン上部の Program Selection にて他のアルゴリズムを実行できる。<strong>PSI-BLAST</strong> は Position-Specific Iterated BLAST の略で、BLASTで得られた複数の結果を再び入力としてBLASTにかけることを繰り返すことで、最初の検索では現れない比較的遠い配列も検出できるようにするというもの。繰り返し回数が1,2回ではファミリーが、より多くではスーパーファミリーが検出できることが多いという。</p>
+<p>Algorithm にて PSI-BLASTを選択してBLASTを実行する。一回目の結果は以下のようになる。</p>
+<p><img src="img/blast_psiblast_result1.png" alt=""></p>
+<p>右上の Run PSI-BLAST iteration 2 にて、結果のうち指定した数の配列を利用して2回目のBLASTを始められる。</p>
+<p><img src="img/blast_psiblast_result2.png" alt=""></p>
+<p><img src="img/blast_psiblast_result2_new.png" alt=""></p>
+<p>新しく現れた配列は &quot;Newly added&quot; にて確認できる。</p>
+<h3 id="マルチプルアラインメント">マルチプルアラインメント</h3>
+<p>あああ</p>
 <h2 id="その他のお話">その他のお話</h2>
 <p>Basic Local Alignment Search Tool の略。</p>
 <h3 id="アラインメントとスコア表">アラインメントとスコア表</h3>
-<p>あああ</p>
+<p>アラインメントはグローバルなものとローカルなものがあり、前者はNeedleman-Wunsch法、後者はSmith-Waterman法（両方とも動的計画法）により求められる。BLASTは後者。動的計画法におけるスコアはマッチ・ギャップ・ミスマッチのそれぞれに対応したもの表の形式で与えられ、スコア表は塩基配列・アミノ酸配列のそれぞれで与えられる。</p>
+<p>スコア表を変更するには、BLASTボタン下部の”Algorithm parameters”を開く。</p>
+<p><img src="img/blast_algo_param.png" alt=""></p>
+<p>Scoring Parameters にてスコアについての設定を変えられる。塩基配列の場合は、マッチ・ミスマッチスコアの値や、ギャップスコアが線形かextensionなどを含むかなどを変えられる。アミノ酸配列の場合はMatrixでスコア表を選ぶ。BLOSUM か PAM かを変更できる。</p>
+<p>また、General Parameters の &quot;Expect threshold&quot; で E-value の閾値（これより小さな値のものしか表示しない）を設定できる。</p>
 
     </body>
     </html>
