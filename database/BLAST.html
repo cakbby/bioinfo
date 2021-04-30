@@ -53,11 +53,11 @@
 <p>塩基配列 -&gt; 塩基配列 で相同性検索する。</p>
 <p>Enter Query Sequence に配列（FASTA形式など）を入れ(あるいはアップロード)、Choose Search Set の Database から調べたいデータベースを選択する。初期設定の &quot;Nucleotide collection (nr/nt)&quot; は、 nr = non-redundant つまり様々なデータベースのうち重複したデータを除いたデータベースを用いる。</p>
 <p>BLASTボタンを押すと、一定時間ごとにジョブが完了したかを更新し、完了したら結果が見える。なお、miRNAのような短い配列を入力した場合は、この段階でそれ専用のパラメータ設定に切り替わる。</p>
-<p><img src="file:///\\wsl$\Ubuntu\home\cakkby2\bioinfo_web\bioinfo\database\short_nucleotide.png" alt=""></p>
+<p><img src="short_nucleotide.png" alt=""></p>
 <p>結果は以下のように表示される。</p>
-<p><img src="file:///\\wsl$\Ubuntu\home\cakkby2\bioinfo_web\bioinfo\database\blastn_result1.png" alt=""></p>
+<p><img src="blastn_result1.png" alt=""></p>
 <p>Max Score は<a href="#%E3%82%A2%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%A1%E3%83%B3%E3%83%88%E3%81%A8%E3%82%B9%E3%82%B3%E3%82%A2%E8%A1%A8">ローカルアラインメント</a>の最大値を、 E-value は、ランダムな配列同士で比較したときに同じスコアをとる配列数の期待値を、 &quot;Per. Ident&quot; = Identity は配列の相同性（一致率）を表している。Max Score はアラインメント的に長い配列の方が高くなりやすく、 Identity もローカルアラインメントとして部分的にしか見ていないので、E-value が指標としてよく用いられる。</p>
-<p><img src="file:///\\wsl$\Ubuntu\home\cakkby2\bioinfo_web\bioinfo\database\blastn_result2.png" alt=""></p>
+<p><img src="blastn_result2.png" alt=""></p>
 <p>Queryが入力した質問配列、Sbjctがデータベース上の配列で、アラインメントの様子が描かれている。</p>
 <h3 id="blastp-protein-blast">blastp (Protein BLAST)</h3>
 <p>アミノ酸配列 -&gt; アミノ酸配列 で相同性検索する。</p>
