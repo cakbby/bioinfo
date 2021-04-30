@@ -25,7 +25,7 @@
     <body class="vscode-body vscode-light">
         <!-- title: UniProt - database -->
 <h1 id="uniprot">UniProt</h1>
-<p>update : 2021/04/30</p>
+<p>update : 2021/05/01 (追加)</p>
 <p><a href="https://www.uniprot.org/">https://www.uniprot.org/</a></p>
 <ul>
 <li><a href="#uniprot">UniProt</a>
@@ -41,10 +41,22 @@
 </li>
 </ul>
 <h2 id="出来ること">出来ること</h2>
-<p>アノテーション付きアミノ酸配列を取得できる。</p>
+<p>アノテーション付きアミノ酸配列を取得できる。アミノ酸配列のFASTAデータや各種データベースへのリンクが分かる。</p>
 <h2 id="タンパク質の情報を手に入れる">タンパク質の情報を手に入れる</h2>
 <h3 id="タンパク質遺伝子名から">タンパク質・遺伝子名から</h3>
 <p>”Src” などの名前を知っているタンパク質・遺伝子の情報を見に行く。</p>
+<p>検索窓から遺伝子名で検索をかけて Entry から開く。</p>
+<p><img src="img/uniprot_src1.png" alt=""></p>
+<p>最初に名前や生物種、Status(アノテーションの質など)が載っている。なお、左側のタブから各種の情報へ素早く移ることができる。</p>
+<p><strong>Function</strong>ではそのタンパク質の機能の説明を見ることができる。Catalytic activity (酵素活性) や 主要なサイトなどが載っている。&quot;GO - Molecular function&quot;, &quot;GO - Biological process&quot; では Gene Ontology (<a href="https://bi.biopapyrus.jp/pathway/go/gene-ontology.html">biopapyrusさんの解説</a>) の情報を得られる。各情報はタグマークのタブを開くことで参照元を確認できる。</p>
+<p><img src="img/uniprot_tag.png" alt=""></p>
+<p>Enzyme and pathway databases では Reactome などのパスウェイデータベースの情報を見られる。</p>
+<p><strong>Names &amp; Taxonomy</strong> は俗称などの情報や taxonomy (系統・分類) の情報を載せている。<strong>Subcellular location</strong> では細胞内の局在の様子を、UniProt annotation と GO - Cellular component の二種類で可しかしてある。<strong>Pathology &amp; Biotech</strong> は医学的な話題や変異の情報、医薬系のデータベースへのリンクが存在している。</p>
+<p><strong>PTM / Processing</strong> では翻訳後修飾 (Post-Translational Modifications) の情報とデータベースへのリンクを、<strong>Expression</strong>, <strong>Interaction</strong> では遺伝子発現、相互作用の情報が載っている。Structure はPDBの立体構造を（帯状の部分で選択した位置が二次構造ごとに表示）、<strong>Family &amp; Domains</strong> ではドメインなどのタンパク質の情報を得られる。</p>
+<p><strong>Sequences</strong> ではアミノ酸配列情報が得られ、また FASTA 形式でのダウンロードが可能である（FASTAボタンから）。BLAST検索をかけることもできる。</p>
+<p><img src="img/uniprot_fasta.png" alt=""></p>
+<p><strong>Similar Proteins</strong> は UniProt Reference Clusters に基づいて選ばれた類似タンパク質の情報が見られる。</p>
+<p><strong>Cross-references</strong> にてその他多くのデータベースへのリンクを見ることができる。</p>
 <h2 id="その他のお話">その他のお話</h2>
 <p>UniProtKB の KB は Knowledge Base の略。</p>
 <p><a href="/bioinfo/bioinfo_database.html">&lt;戻る</a></p>

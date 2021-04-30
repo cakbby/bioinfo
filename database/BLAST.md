@@ -3,7 +3,7 @@
 
 # BLAST
 
-update : 2021/04/30
+update : 2021/04/30 (追加)
 
 https://blast.ncbi.nlm.nih.gov/Blast.cgi
 
