@@ -170,6 +170,13 @@ ul {
 	background:rgb(240, 245, 243);
 }
 
+@media screen and (max-width: 480px) {
+	ul {
+		padding-left: 5%;
+		color:rgba(0, 0, 0, 0);
+	}
+}
+
 ul a{
 	color:rgb(60, 90, 150);
 	font-weight: normal;
