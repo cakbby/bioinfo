@@ -93,6 +93,9 @@ body.showEditorSelection li.code-line:hover:before {
 }
 
 img {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
 	max-width: 100%;
 	max-height: 100%;
 }
@@ -140,11 +143,15 @@ h2 {
     border-left: 6px solid #007acc !important;
 }
 
+/** 小見出し */
 h3 {
     font-weight: bold;
     font-size: 1.4em;
     color: #007acc;
 	line-height: 1.8;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	border-bottom: 2px solid #007acc;
 }
 
 p {
@@ -155,8 +162,12 @@ p {
 }
 
 ul {
-	padding-left: 2%;
-	color: rgb(200, 200, 200);
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 3%;
+	line-height: 2.0;
+	color: rgb(160, 160, 160);
+	background:rgb(240, 245, 243);
 }
 
 ul a{

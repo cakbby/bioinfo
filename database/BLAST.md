@@ -1,6 +1,4 @@
 <!-- title: BLAST - database -->
-[<戻る][link-return]
-
 [link-return]: /bioinfo/bioinfo_database.html
 
 # BLAST
