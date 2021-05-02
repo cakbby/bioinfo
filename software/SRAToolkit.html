@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>SRA Toolkit - software</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="../stylesheets/database.css"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <!-- title: SRA Toolkit - software -->
+<h1 id="sra-toolkit">SRA Toolkit</h1>
+<p>update : 2021/05/03 (追加)</p>
+<p><a href="https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software">https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software</a></p>
+<ul>
+<li><a href="#sra-toolkit">SRA Toolkit</a>
+<ul>
+<li><a href="#%E5%87%BA%E6%9D%A5%E3%82%8B%E3%81%93%E3%81%A8">出来ること</a></li>
+<li><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">インストール</a>
+<ul>
+<li><a href="#%E4%BC%9D%E7%B5%B1%E7%9A%84%E3%81%AA%E6%96%B9%E6%B3%95">伝統的な方法</a></li>
+<li><a href="#conda-%E3%82%92%E4%BD%BF%E3%81%86%E6%96%B9%E6%B3%95">conda を使う方法</a></li>
+<li><a href="#%E7%A2%BA%E8%AA%8D">確認</a></li>
+</ul>
+</li>
+<li><a href="#fasterq-dump-%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89-prefetch-%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89">fasterq-dump コマンド, prefetch コマンド</a></li>
+<li><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%81%8A%E8%A9%B1">その他のお話</a>
+<ul>
+<li><a href="#wget-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">wget のインストール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="出来ること">出来ること</h2>
+<p>SRAをfastqファイルに変換・ダウンロードする fasterq-dump コマンドや SRA のダウンロードなどを行う prefetch コマンドが使えるようになる。</p>
+<h2 id="インストール">インストール</h2>
+<h3 id="伝統的な方法">伝統的な方法</h3>
+<p>上記ページから各種OSに対応したファイルを手に入れる。Ubuntu on WSL2 を使っている場合は、ダウンロードリンクをコピペしたのち <a href="#wget">wget</a> を使って以下のようにダウンロードする。cd でまともな場所に移っておく！</p>
+<pre><code class="language-bash"><div>wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.11.0/sratoolkit.2.11.0-ubuntu64.tar.gz
+</div></code></pre>
+<p>ダウンロードしたファイルを展開</p>
+<pre><code class="language-bash"><div>tar zxvf sratoolkit.2.11.0-ubuntu64.tar.gz
+</div></code></pre>
+<p>PATH に追加</p>
+<pre><code class="language-bash"><div><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$PWD</span>/sratoolkit.2.11.0-ubuntu64/bin
+</div></code></pre>
+<h3 id="conda-を使う方法">conda を使う方法</h3>
+<p>bioconda 環境があれば以下のコマンドでOK</p>
+<pre><code class="language-bash"><div>conda install -c bioconda sra-tools
+</div></code></pre>
+<h3 id="確認">確認</h3>
+<pre><code class="language-bash"><div><span class="hljs-built_in">which</span> fasterq-dump
+</div></code></pre>
+<p>と打ってインストール場所が出るか確認</p>
+<p>公式には以下のコマンドを打って機能してるか確かめるのがいいらしい。</p>
+<pre><code class="language-bash"><div>fastq-dump --stdout SRR390728 | head -n 8
+</div></code></pre>
+<p>これの結果が次のように出力されればOK</p>
+<pre><code class="language-bash"><div>@SRR390728.1 1 length=72
+CATTCTTCACGTAGTTCTCGAGCCTTGGTTTTCAGCGATGGAGAATGACTTTGACAAGCTGAGAGAAGNTNC
++SRR390728.1 1 length=72
+;;;;;;;;;;;;;;;;;;;;;;;;;;;9;;665142;;;;;;;;;;;;;;;;;;;;;;;;;;;;;96&amp;&amp;&amp;&amp;(
+@SRR390728.2 2 length=72
+AAGTAGGTCTCGTCTGTGTTTTCTACGAGCTTGTGTTCCAGCTGACCCACTCCCTGGGTGGGGGGACTGGGT
++SRR390728.2 2 length=72
+;;;;;;;;;;;;;;;;;4;;;;3;393.1+4&amp;&amp;5&amp;&amp;;;;;;;;;;;;;;;;;;;;;;&lt;9;&lt;;;;;;464262
+</div></code></pre>
+<h2 id="fasterq-dump-コマンド-prefetch-コマンド">fasterq-dump コマンド, prefetch コマンド</h2>
+<p>fasterq-dump コマンドを用いると、持っているSRAファイルをfastq形式に変換できる。</p>
+<pre><code class="language-bash"><div>fasterq-dump SRR000001.sra
+</div></code></pre>
+<p>.sra がない場合でも、ダウンロードも兼ねてやってくれる。ただし、prefetch を使って落としてきてからの方がいいらしい。SRA形式に対し、FASTQ形式はおよそ7倍のファイルサイズになることが多いという。</p>
+<pre><code class="language-bash"><div>prefetch SRR000001
+fasterq-dump SRR000001
+</div></code></pre>
+<p>fasterq-dump は、初期設定で paired-end データを以下の3つのファイルに分ける（SRR000001を例に）。</p>
+<p>SRR000001.fastq</p>
+<p>SRR000001_1.fastq</p>
+<p>SRR000001_2.fastq</p>
+<p>他に以下のオプションがある</p>
+<p>-O | --outdir : 出力先のディレクトリを指定</p>
+<p>--split-spot : 分けたリードを一つのファイルに</p>
+<p>--split-files : 分けたリードを別々のファイルに</p>
+<p>-Z | --stdout : 出力を標準出力へ (bash に放流)</p>
+<p>fasterq-dump と Run Selector の合わせ技で複数ファイルを一気に落としてくることもできる（詳細は<a href="../database/SRA.html">こちら</a>）。</p>
+<h2 id="その他のお話">その他のお話</h2>
+<p>より細かい詳細な使い方などは SRA Toolkit Wiki に書いてありそう。また、fastq-dump が高速になったのが fasterq-dump らしい。</p>
+<h3 id="wget-のインストール">wget のインストール</h3>
+<p>Homebrew を入れておくことで、以下のコマンドで導入できる。</p>
+<pre><code class="language-bash"><div>brew install wget
+</div></code></pre>
+<p>apt でもOK</p>
+<p><a href="/bioinfo/bioinfo_database.html">&lt;戻る</a></p>
+
+    </body>
+    </html>

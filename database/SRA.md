@@ -3,7 +3,7 @@
 
 # SRA (NCBI)
 
-update : 2021/05/02 (追加)
+update : 2021/05/03 (SRA Toolkitへのリンク)
 
 https://www.ncbi.nlm.nih.gov/sra
 
@@ -46,7 +46,7 @@ DRA003980
 
 以下は次のように操作
 
-1. [SRA Toolkitをインストール](SRAToolkit.html)しておく。
+1. [SRA Toolkitをインストール](../software/SRAToolkit.html)しておく。
 
 2. 落としてきたいディレクトリへ移動(cd)したのち、SRA Toolkit の fasterq-dump コマンドを(繰り返し)用いてデータをダウンロードする（参考：[ばいばいバイオ氏のサイト](https://www.kimoton.com/entry/20190610/1560135569), DRY解析教本）。
     ```bash
