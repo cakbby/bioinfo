@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>DRA Search - database</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="../stylesheets/database.css"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <!-- title: DRA Search - database -->
+<h1 id="sra-ncbi">SRA (NCBI)</h1>
+<p>update : 2021/05/02 (追加)</p>
+<p><a href="https://www.ncbi.nlm.nih.gov/sra">https://www.ncbi.nlm.nih.gov/sra</a></p>
+<ul>
+<li><a href="#sra-ncbi">SRA (NCBI)</a>
+<ul>
+<li><a href="#%E5%87%BA%E6%9D%A5%E3%82%8B%E3%81%93%E3%81%A8">出来ること</a></li>
+<li><a href="#ngs%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%B8%80%E6%8B%AC%E3%81%A7%E5%85%A5%E6%89%8B%E3%81%99%E3%82%8B">NGSデータを一括で入手する</a>
+<ul>
+<li><a href="#accession%E7%95%AA%E5%8F%B7%E3%82%92%E7%9F%A5%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%A8%E3%81%8D">Accession番号を知っているとき</a></li>
+</ul>
+</li>
+<li><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%81%8A%E8%A9%B1">その他のお話</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="出来ること">出来ること</h2>
+<p>NGSデータを入手できる。生物や実験の種類で検索して、実験の詳細やNGSデータを落とせる。SRA Toolkit と組み合わせると欲しいデータを一括でダウンロードできる。</p>
+<h2 id="ngsデータを一括で入手する">NGSデータを一括で入手する</h2>
+<h3 id="accession番号を知っているとき">Accession番号を知っているとき</h3>
+<p>論文などに書かれたAccession番号からデータを入手できる。</p>
+<p>＜Accession番号の例＞</p>
+<p>DRR045547,
+ERX040843,
+SRP055387,
+DRA003980</p>
+<p>番号の意味は<a href="DRASearch.html#accession%E7%95%AA%E5%8F%B7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">こちら</a></p>
+<p>上部の SRA 検索窓にAccession番号を入れて検索する。今回は&quot;SRP055387&quot; で検索してみる。</p>
+<p><img src="img/sra_search1.png" alt=""></p>
+<p>上部に &quot;View results as an expanded interactive table using the Run Selector. Send resuolts to Runs selector&quot; とかかれた注意があるので、Run Selector へ移る。</p>
+<p><img src="img/sra_selector1.png" alt=""></p>
+<p>このサイトでは、自分の欲しい実験のNGSデータを選択して入手できるようにしている。左側の Filters list を用いると、欲しい実験結果のみを選択できるようになる。今回は例えば、Cell_type &gt; cd19+ b-cells, Tissue &gt; normal のように選択すると、以下のように7つのRunのみが選択される。</p>
+<p><img src="img/sra_selector2.png" alt=""></p>
+<p>実際に欲しいデータにチェックを入れて、Select の Selected から (Download) Accession List を押して Accession番号のリスト SRR_Acc_List.txt をダウンロードする。</p>
+<p>以下は次のように操作</p>
+<ol>
+<li>
+<p><a href="SRAToolkit.html">SRA Toolkitをインストール</a>しておく。</p>
+</li>
+<li>
+<p>落としてきたいディレクトリへ移動(cd)したのち、SRA Toolkit の fasterq-dump コマンドを(繰り返し)用いてデータをダウンロードする（参考：<a href="https://www.kimoton.com/entry/20190610/1560135569">ばいばいバイオ氏のサイト</a>, DRY解析教本）。</p>
+<pre><code class="language-bash"><div>cat SRR_Acc_List.txt | <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> line; <span class="hljs-keyword">do</span> cmd=<span class="hljs-string">&quot;fasterq-dump --gzip --split-files <span class="hljs-variable">${line}</span>&quot;</span>; <span class="hljs-built_in">eval</span> <span class="hljs-variable">${cmd}</span>; <span class="hljs-keyword">done</span>
+</div></code></pre>
+<p>while read line で SRR_Acc_List.txt 内を一行ずつ読み進め、fasterq-dump コマンドでダウンロードしている。オプションの --gzip は fastq.gz となるように圧縮することを、 --split-files は paired-end の場合に Forward と Reverse のデータを分けてダウンロードする（ single-end ならば不要）。</p>
+</li>
+</ol>
+<p>こうしてfastq.gzファイルを一括でダウンロードできた。</p>
+<h2 id="その他のお話">その他のお話</h2>
+<p><a href="/bioinfo/bioinfo_database.html">&lt;戻る</a></p>
+
+    </body>
+    </html>

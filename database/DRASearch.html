@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>DRA Search - database</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="../stylesheets/database.css"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <!-- title: DRA Search - database -->
+<h1 id="dra-search-ddbj">DRA Search (DDBJ)</h1>
+<p>update : 2021/05/02 (追加)</p>
+<p><a href="https://ddbj.nig.ac.jp/DRASearch/">https://ddbj.nig.ac.jp/DRASearch/</a></p>
+<ul>
+<li><a href="#dra-search-ddbj">DRA Search (DDBJ)</a>
+<ul>
+<li><a href="#%E5%87%BA%E6%9D%A5%E3%82%8B%E3%81%93%E3%81%A8">出来ること</a></li>
+<li><a href="#ngs%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%A5%E6%89%8B%E3%81%99%E3%82%8B">NGSデータを入手する</a>
+<ul>
+<li><a href="#accession%E7%95%AA%E5%8F%B7%E3%82%92%E7%9F%A5%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%A8%E3%81%8D">Accession番号を知っているとき</a></li>
+<li><a href="#"></a></li>
+</ul>
+</li>
+<li><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%81%8A%E8%A9%B1">その他のお話</a>
+<ul>
+<li><a href="#accession%E7%95%AA%E5%8F%B7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">Accession番号について</a></li>
+<li><a href="#lftp%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">lftpのインストール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="出来ること">出来ること</h2>
+<p>SRAからNGSデータを入手できる。生物や実験の種類で検索して、実験の詳細やNGSデータを落とせる。NCBI SRA や EBI ENA と同様のデータを入手できる。</p>
+<h2 id="ngsデータを入手する">NGSデータを入手する</h2>
+<h3 id="accession番号を知っているとき">Accession番号を知っているとき</h3>
+<p>SRA(Sequence Read Archive)は NCBI, EBI, DDBJ の3拠点で全く同じように保存されているため、拠点が近く通信が速そうなDDBJから落としてくるのがよさそう。論文などに書かれたAccession番号からデータを入手できる。</p>
+<p>＜Accession番号の例＞</p>
+<p>DRR045547,
+ERX040843,
+SRP003111,
+DRA003980</p>
+<p>番号の意味は<a href="#accession%E7%95%AA%E5%8F%B7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">こちら</a></p>
+<p>Topページの Accession に番号を入れて Search ボタンを押す（あるいは入力後にEnterする）と次のようなページに飛ぶ（runの場合）</p>
+<p><img src="img/drasearch_run1.png" alt=""></p>
+<p>SRAファイルまたはFASTQファイルはftpによってダウンロードするため、bash (Terminal) や コマンドプロンプト などで以下のようにして落とす。</p>
+<ol>
+<li>
+<p><a href="#lftp%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">lftpをインストール</a>しておく。</p>
+</li>
+<li>
+<p>&quot;FASTQ&quot;か&quot;SRA&quot;と書かれたボタン上で右クリックし、リンクをコピーする。</p>
+</li>
+<li>
+<p>落としてきたいディレクトリへ移動(cd)したのち</p>
+<pre><code class="language-bash"><div>lftp ftp://ftp.ddbj.nig.ac.jp/ddbj_database/dra/fastq/SRA243/SRA243774/SRX885176
+</div></code></pre>
+<p>のようにして ftp に入る。</p>
+</li>
+<li>
+<p>ls などでお目当てのファイルがあることを確認したのち</p>
+<pre><code class="language-bash"><div>get SRR1812639.fastq.bz2
+</div></code></pre>
+<p>のようにしてダウンロードする。複数ある場合はmgetで。</p>
+</li>
+<li>
+<p>ftp から抜ける場合は exit と打つ。</p>
+</li>
+</ol>
+<h3 id=""></h3>
+<h2 id="その他のお話">その他のお話</h2>
+<h3 id="accession番号について">Accession番号について</h3>
+<p>SRA の Accession番号は次の図のような関係に基づいて名づけられている（<a href="https://www.ddbj.nig.ac.jp/dra/submission.html">DDBJ Sequence Read Archive Handbook</a> より引用）。</p>
+<p><img src="img/drasearch_datamodel1.png" alt=""></p>
+<p>表でまとめると以下のようになる（引用：Dr.Bono の生命科学データ解析 p.33）</p>
+<table>
+<thead>
+<tr>
+<th>SRA entries</th>
+<th>DDBJ</th>
+<th>EBI</th>
+<th>NCBI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>study</td>
+<td>DRP</td>
+<td>ERP</td>
+<td>SRP</td>
+</tr>
+<tr>
+<td>sample</td>
+<td>DRS</td>
+<td>ERS</td>
+<td>SRS</td>
+</tr>
+<tr>
+<td>experiment</td>
+<td>DRX</td>
+<td>ERX</td>
+<td>SRX</td>
+</tr>
+<tr>
+<td>run</td>
+<td>DRR</td>
+<td>ERR</td>
+<td>SRR</td>
+</tr>
+<tr>
+<td>analysis</td>
+<td>DRZ</td>
+<td>ERZ</td>
+<td>SRZ</td>
+</tr>
+</tbody>
+</table>
+<p>基本的に頭文字の D, E, S は関係なく（すべてDRA Search から落とせる）、〇RR以下に FASTQ ファイルや SRA ファイルが存在する。</p>
+<h3 id="lftpのインストール">lftpのインストール</h3>
+<p><a href="/bioinfo/bioinfo_database.html">&lt;戻る</a></p>
+
+    </body>
+    </html>
