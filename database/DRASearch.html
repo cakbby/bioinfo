@@ -59,7 +59,7 @@ DRA003980</p>
 <p>番号の意味は<a href="#accession%E7%95%AA%E5%8F%B7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">こちら</a></p>
 <p>Topページの Accession に番号を入れて Search ボタンを押す（あるいは入力後にEnterする）と次のようなページに飛ぶ（runの場合）</p>
 <p><img src="img/drasearch_run1.png" alt=""></p>
-<p>SRAファイルまたはFASTQファイルはftpによってダウンロードするため、bash (Terminal) や コマンドプロンプト などで以下のようにして落とす。</p>
+<p>SRAファイルまたはFASTQファイルはftpによってダウンロードするため、bash で以下のようにして落とす。</p>
 <ol>
 <li>
 <p><a href="#lftp%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">lftpをインストール</a>しておく。</p>
@@ -135,6 +135,15 @@ DRA003980</p>
 </table>
 <p>基本的に頭文字の D, E, S は関係なく（すべてDRA Search から落とせる）、〇RR以下に FASTQ ファイルや SRA ファイルが存在する。</p>
 <h3 id="lftpのインストール">lftpのインストール</h3>
+<p>apt を使っていれば、入っているはず。</p>
+<pre><code class="language-bash"><div>sudo apt update -y &amp; sudo apt upgrade -y
+</div></code></pre>
+<p>確認は</p>
+<pre><code class="language-bash"><div>sudo apt show lftp
+</div></code></pre>
+<p>Homebrewで入れるなら</p>
+<pre><code class="language-bash"><div>brew install lftp
+</div></code></pre>
 <p><a href="/bioinfo/bioinfo_database.html">&lt;戻る</a></p>
 
     </body>

@@ -37,7 +37,7 @@ Topページの Accession に番号を入れて Search ボタンを押す（あ�
 
 ![](img/drasearch_run1.png)
 
-SRAファイルまたはFASTQファイルはftpによってダウンロードするため、bash (Terminal) や コマンドプロンプト などで以下のようにして落とす。
+SRAファイルまたはFASTQファイルはftpによってダウンロードするため、bash で以下のようにして落とす。
 
 1. [lftpをインストール](#lftpのインストール)しておく。
 
@@ -85,5 +85,22 @@ SRA の Accession番号は次の図のような関係に基づいて名づけら
 
 ### lftpのインストール
 
+apt を使っていれば、入っているはず。
+
+```bash
+sudo apt update -y & sudo apt upgrade -y
+```
+
+確認は
+
+```bash
+sudo apt show lftp
+```
+
+Homebrewで入れるなら
+
+```bash
+brew install lftp
+```
 
 [<戻る][link-return]
