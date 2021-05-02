@@ -34,7 +34,7 @@
 <li><a href="#ngs%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%A5%E6%89%8B%E3%81%99%E3%82%8B">NGSデータを入手する</a>
 <ul>
 <li><a href="#accession%E7%95%AA%E5%8F%B7%E3%82%92%E7%9F%A5%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%A8%E3%81%8D">Accession番号を知っているとき</a></li>
-<li><a href="#"></a></li>
+<li><a href="#%E7%94%9F%E7%89%A9%E7%A8%AE%E3%81%AA%E3%81%A9%E3%81%8B%E3%82%89%E6%A4%9C%E7%B4%A2%E3%81%99%E3%82%8B">生物種などから検索する</a></li>
 </ul>
 </li>
 <li><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%81%8A%E8%A9%B1">その他のお話</a>
@@ -50,7 +50,7 @@
 <p>SRAからNGSデータを入手できる。生物や実験の種類で検索して、実験の詳細やNGSデータを落とせる。NCBI SRA や EBI ENA と同様のデータを入手できる。</p>
 <h2 id="ngsデータを入手する">NGSデータを入手する</h2>
 <h3 id="accession番号を知っているとき">Accession番号を知っているとき</h3>
-<p>SRA(Sequence Read Archive)は NCBI, EBI, DDBJ の3拠点で全く同じように保存されているため、拠点が近く通信が速そうなDDBJから落としてくるのがよさそう。論文などに書かれたAccession番号からデータを入手できる。</p>
+<p>SRA(Sequence Read Archive)は NCBI, EBI, DDBJ の3拠点で全く同じように保存されているため、少しのデータなら拠点が近く通信が速そうなDDBJから落としてくるのがよさそう。論文などに書かれたAccession番号からデータを入手できる。</p>
 <p>＜Accession番号の例＞</p>
 <p>DRR045547,
 ERX040843,
@@ -83,7 +83,9 @@ DRA003980</p>
 <p>ftp から抜ける場合は exit と打つ。</p>
 </li>
 </ol>
-<h3 id=""></h3>
+<p>もし、複数のRunを一括でダウンロード・前処理したい場合は、<a href="SRA.html">NCBI SRA の機能</a>を用いる。</p>
+<h3 id="生物種などから検索する">生物種などから検索する</h3>
+<p>メインページで、Organism (生物種), StudyType (実験手法), Platform (機械) および Keyword で検索をかけられる。生物種は正式名称を打たなければいけないが、有名なものなどは下部にまとめてある。検索結果をクリックすれば後は先述した通りにすればダウンロード出来る。</p>
 <h2 id="その他のお話">その他のお話</h2>
 <h3 id="accession番号について">Accession番号について</h3>
 <p>SRA の Accession番号は次の図のような関係に基づいて名づけられている（<a href="https://www.ddbj.nig.ac.jp/dra/submission.html">DDBJ Sequence Read Archive Handbook</a> より引用）。</p>
