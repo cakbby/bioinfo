@@ -1,0 +1,58 @@
+.vscode-light .hljs-function,
+.vscode-light .hljs-params {
+	color: inherit;
+}
+
+.vscode-light .hljs-comment,
+.vscode-light .hljs-quote,
+.vscode-light .hljs-variable {
+	color: #66dd66;
+}
+
+.vscode-light .hljs-keyword,
+.vscode-light .hljs-selector-tag,
+.vscode-light .hljs-built_in,
+.vscode-light .hljs-name,
+.vscode-light .hljs-tag {
+	color: #a9ceec;
+}
+
+.vscode-light .hljs-string,
+.vscode-light .hljs-title,
+.vscode-light .hljs-section,
+.vscode-light .hljs-attribute,
+.vscode-light .hljs-literal,
+.vscode-light .hljs-template-tag,
+.vscode-light .hljs-template-variable,
+.vscode-light .hljs-type {
+	color: #ffa500;
+}
+
+.vscode-light .hljs-selector-attr,
+.vscode-light .hljs-selector-pseudo,
+.vscode-light .hljs-meta {
+	color: #2b91af;
+}
+
+.vscode-light .hljs-doctag {
+	color: #808080;
+}
+
+.vscode-light .hljs-attr {
+	color: #f00;
+}
+
+.vscode-light .hljs-symbol,
+.vscode-light .hljs-bullet,
+.vscode-light .hljs-link {
+	color: #00b0e8;
+}
+
+
+.vscode-light .hljs-emphasis {
+	font-style: italic;
+}
+
+.vscode-light .hljs-strong {
+	font-weight: bold;
+}
