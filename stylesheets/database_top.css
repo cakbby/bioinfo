@@ -54,20 +54,22 @@ h2 {
     font-weight: bold;
     font-size: 1.8em;
     color: #444;
-    margin: 0.8em 0 0.8em;
+    margin: 40px 0 40px;
     padding-left: 15px;
 	line-height: 1.3em;
     border-left: 6px solid #007acc;
 }
 
 h3 {
+	display: inline-block;
 	margin-left: 3%;
     font-weight: bold;
     font-size: 1.4em;
-    color: #007acc;
-	padding-left: 10px;
+    color: #10486e;
+	background-color: rgb(255, 255, 197);
+	padding: 3px 10px 3px 10px;
 	line-height: 1.1em;
-	border-left: 3px solid #007acc;
+	border-left: 3px solid #10486e;
 }
 
 .item {
@@ -102,9 +104,12 @@ h3 {
 @media screen and (max-width: 480px) {
 	h1 {
 		font-size: 1.6em;
+		line-height: 1.8em;
+		margin-bottom: 30px;
 	}
 
 	h2 {
 		font-size: 1.3em;
+		margin: 40px 0 20px;
 	}
 }
