@@ -157,11 +157,17 @@ h2 {
     font-weight: bold;
     font-size: 1.8em;
     color: #444;
-	margin-top: 1.2em;
+	margin-top: 4em;
 	margin-bottom: 0.6em;
     padding-left: 15px;
 	line-height: 1.3em;
     border-left: 6px solid #007acc !important;
+}
+
+@media screen and (max-width: 480px) {
+	p {
+		margin-top: 3em;
+	}
 }
 
 /** 小見出し */
